@@ -61,8 +61,7 @@ class LearningAgent(Agent):
         # Collect data about the environment
         waypoint = self.planner.next_waypoint() # The next waypoint 
         inputs = self.env.sense(self)           # Visual input - intersection light and traffic
-        deadline = self.env.get_deadline(self)  # Remaining deadline
-
+        
         inputs['waypoint'] = waypoint
 
         ########### 
@@ -134,8 +133,7 @@ class LearningAgent(Agent):
         # Set the agent state and default action
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
-        action = None
-
+        
         ########### 
         ## TO DO ##
         ###########
@@ -164,13 +162,12 @@ class LearningAgent(Agent):
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
 
-        next_state = self.build_state()
-        
         previous_q_value = self.Q[state][action]
 
-        # we would use the next two lines, if we were to use the discount factor gamma.
+        # we would use the next three lines, if we were to use the discount factor gamma.
         # we would be taking the highest q value of the next state into account.
         # however, in our case the next state is not really informative.
+        #next_state = self.build_state()
         #max_q_next_state = self.get_maxQ(next_state)
 		#updated_q_value = (1 - self.alpha) * previous_q_value + self.alpha * (reward + max_q_next_state)
         
